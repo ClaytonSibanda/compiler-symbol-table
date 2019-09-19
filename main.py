@@ -22,15 +22,13 @@ def handle_output(output):
     for s in output:
         print(s)
 
-def main():
-    # stack.append({})
-    data =[]
-    stack =[]
-    output = []
-    with open('testdata/test1.dat','r') as file:
+def read_data(filename):
+    with open(filename,'r') as file:
         data= [s.strip() for s in file.readlines()]
     print(data)
+    return data
 
+def construct_table(stack,output,data):
     for s in data:
         s_list = s.split()
         #print(s_list)
@@ -48,6 +46,15 @@ def main():
         elif s=='endscope':
             print('end scope')
             handle_endscope(stack,output)
+
+def main():
+  
+    stack =[]
+    output = []
+    filename = input()
+    data = read_data(filename)
+    construct_table(stack,output,data)
+    
     
     handle_output(output)
            
